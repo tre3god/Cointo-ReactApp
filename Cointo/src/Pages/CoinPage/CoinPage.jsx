@@ -50,30 +50,29 @@ const data = [
 
 
 export default function CoinPage() {
-    // const [graphData, setGraphData] = useState([]);
+    const [graphData, setGraphData] = useState([]);
     const { id } = useParams();
     console.log(id)
 
     useEffect(() => {
         const fetchSearch = async () => {
-          const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=30&interval=daily`);
+          const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=365&interval=daily`);
           const data = await response.json();
 
           // this shows timestamp vs price
-          const graphPoint = data.prices
-          console.log(graphPoint)
+          console.log(data)
           
 
-          graphPoint.map((point) => {
-            
+          const graphPoint = data.prices.map((point) => {
+            const [timestamp, p] = point
+            const date = new Date(timestamp).toLocaleDateString("en-sg")
             return {
-                    Date: 'Page F',
-                    uv: 2390,
-                    pv: 3800,
-                    amt: 2500,
+                    Date: date,
+                    Price: p,
+                    
             }
           })
-            
+            setGraphData(graphPoint)
         
         }
         fetchSearch();
@@ -85,9 +84,9 @@ export default function CoinPage() {
     <div>CoinPage</div>
     <div>
     <AreaChart
-          width={500}
+          width={1000}
           height={400}
-          data={data}
+          data={graphData}
           margin={{
             top: 10,
             right: 30,
@@ -99,7 +98,7 @@ export default function CoinPage() {
           <XAxis dataKey="Date" />
           <YAxis />
           <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+          <Area type="monotone" dataKey="Price" stroke="#8884d8" fill="#8884d8" />
         </AreaChart>
     </div>
 
