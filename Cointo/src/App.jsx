@@ -17,6 +17,7 @@ export default function App() {
         {/* <Route path="/trending" element={<TrendingStore />}></Route> */}
         {/* <Route path={`/trending/${coin.name}`} element={<CoinPage />}></Route> */}
         <Route path="/trending/:id" element={<CoinPage />}></Route>
+        
 
       </Routes>
       </>
