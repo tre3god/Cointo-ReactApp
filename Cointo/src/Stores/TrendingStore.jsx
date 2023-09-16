@@ -12,12 +12,15 @@ export default function TrendingStore() {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        console.log(data)
 
         // change their data to my desired array (only things i need)
         const extractedTrendingCoins = data.coins.map((coin) => ({
             id: coin.item.id,
             name: coin.item.name,
             priceBtc: coin.item.price_btc,
+            symbol: coin.item.symbol,
+            marketCapRank: coin.item.market_cap_rank,
             image: coin.item.large,
           }));
       
@@ -46,11 +49,11 @@ export default function TrendingStore() {
     <div>TrendingStore</div>
     <div>
       {trending.map((coin) => (
-        <div key={coin.id}>
+        <span key={coin.id}>
             <Link to={`/trending/${coin.id}`}>
           {coin.name}
           </Link>
-        </div>
+        </span>
       ))}
     </div>
   </>

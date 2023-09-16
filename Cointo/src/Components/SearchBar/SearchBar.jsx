@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
@@ -50,8 +51,10 @@ export default function SearchBar() {
     <div>
       {searchCoins.map((coin) => (
         <div key={coin.id}>
+          <Link to={`/trending/${coin.id}`}>
           {coin.name}
           {coin.symbol}
+          </Link>
           </div>
       ))}
     </div>
