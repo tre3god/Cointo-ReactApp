@@ -15,8 +15,8 @@ export default function TrendingStore() {
 
         // change their data to my desired array (only things i need)
         const extractedTrendingCoins = data.coins.map((coin) => ({
-            name: coin.item.name,
             id: coin.item.id,
+            name: coin.item.name,
             priceBtc: coin.item.price_btc,
             image: coin.item.large,
           }));
@@ -47,7 +47,7 @@ export default function TrendingStore() {
     <div>
       {trending.map((coin) => (
         <div key={coin.id}>
-            <Link to={`/trending/${coin.name}`}>
+            <Link to={`/trending/${coin.id}`}>
           {coin.name}
           </Link>
         </div>

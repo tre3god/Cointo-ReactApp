@@ -24,6 +24,7 @@ export default function SearchBar() {
         name: coin.name,
         id: coin.id,
         image: coin.large,
+        symbol: coin.symbol
       }));
 
       console.log(extractedSearchCoins)
@@ -50,6 +51,7 @@ export default function SearchBar() {
       {searchCoins.map((coin) => (
         <div key={coin.id}>
           {coin.name}
+          {coin.symbol}
           </div>
       ))}
     </div>
