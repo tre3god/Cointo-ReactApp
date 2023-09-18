@@ -52,7 +52,7 @@ const data = [
 export default function GraphPage() {
     const [graphData, setGraphData] = useState([]);
     const { id } = useParams();
-    console.log(id)
+    // console.log(id)
 
     useEffect(() => {
         const fetchSearch = async () => {
@@ -60,7 +60,7 @@ export default function GraphPage() {
           const data = await response.json();
 
           // this shows timestamp vs price
-          console.log(data)
+          // console.log(data)
           
 
           const graphPoint = data.prices.map((point) => {
@@ -73,7 +73,7 @@ export default function GraphPage() {
             }
           })
             setGraphData(graphPoint)
-        
+        // console.log(graphPoint)
         }
         fetchSearch();
       }, [id]);
