@@ -37,8 +37,6 @@ export default function CoinData() {
     <p>{coinDetails.image?.large}  </p>
     <div>{coinDetails.description?.en}</div>
 
-    {/* <h1>{coinDetails.image}</h1> */}
-
     </div>
     </>
 

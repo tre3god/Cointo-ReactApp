@@ -2,7 +2,6 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import CoinData from '../CoinData/CoinData';
 import BuyButton from '../BuyButton/BuyButton';
-import SellButton from '../SellButton/SellButton';
 
 const TOKEN =
 "patEMyFBP6XE9InEM.2410ce65903fe770f8d957aaeabe59c1e0a49983a6243c1d3de60551b15dddeb";
@@ -11,7 +10,8 @@ const BASE_URL = "https://api.airtable.com/v0/appIy9yfGUFojgmtx/Crypto";
 
 export default function Watchlist() {
     const [portfolio, setPortfolio] = useState([])
-    
+    const [input, setInput] = useState("")
+
     //pulling airtable data
     useEffect(() => {
         const fetchAirTable = async () => {
@@ -33,8 +33,9 @@ export default function Watchlist() {
         
         };
         fetchAirTable();
-      }, []);
+    }, []);
 
+   
       //pulling coindata
     //   useEffect(() => {
     //     const fetchSearch = async () => {
@@ -56,6 +57,7 @@ export default function Watchlist() {
     //     fetchSearch();
     //   }, [id]);
 
+    // console.log(portfolio)
 
   return (
     <>
@@ -79,16 +81,14 @@ export default function Watchlist() {
               <td>{item['Purchase Amount']}</td>
               <td>{item['Number of Coins']}</td>
               <td>{item['Purchase Amount']/item['Number of Coins']}</td>
-              {/* <td>{CoinData}</td> */}
             </tr>
           ))}
         </tbody>
       </table>
    
-   <div>
-    <BuyButton />
-    <SellButton />
-   </div>
+      <BuyButton input={input} setInput={setInput} setPortfolio={setPortfolio} portfolio={portfolio} BASE_URL={BASE_URL} TOKEN={TOKEN} />
+   
+   
     </>
   )
 }
