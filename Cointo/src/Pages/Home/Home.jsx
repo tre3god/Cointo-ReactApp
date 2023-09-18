@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SearchBar from '../../Components/SearchBar/SearchBar'
-import TrendingStore from '../../Stores/TrendingStore'
+import TrendingStore from '../../Components/TrendingStore'
 import { Route, Routes } from "react-router-dom";
 
 

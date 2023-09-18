@@ -33,8 +33,7 @@ export default function CoinData() {
     <div>
     <h2> Name: {coinDetails.name}</h2>
     <p>Current Price {coinDetails.market_data?.current_price?.sgd} SGD</p> 
-    <p>24Hrs change  {coinDetails.market_data?.price_change_percentage_24h_in_currency
-?.sgd}%</p>
+    <p>24Hrs change  {coinDetails.market_data?.price_change_percentage_24h_in_currency?.sgd}%</p>
     <p>{coinDetails.image?.large}  </p>
     <div>{coinDetails.description?.en}</div>
 
