@@ -3,9 +3,11 @@ import './App.css'
 import Home from './Pages/Home/Home';
 import CoinPage from './Pages/Coinpage/CoinPage';
 import Watchlist from "./Components/Watchlist/Watchlist";
+import { useState } from "react";
 
 
 export default function App() {
+  const [portfolio, setPortfolio] = useState([])
 
 
   return (
@@ -14,13 +16,8 @@ export default function App() {
       
       <Routes>
         <Route path="/home" element={<Home />}></Route>
-        
-        {/* <Route path="/trending" element={<TrendingStore />}></Route> */}
-        {/* <Route path={`/trending/${coin.name}`} element={<CoinPage />}></Route> */}
         <Route path="/trending/:id" element={<CoinPage />}></Route>
-        
-        <Route path="/Portfolio" element={<Watchlist />}></Route>
-
+        <Route path="/portfolio" element={<Watchlist />}></Route>
       </Routes>
       </>
   )
