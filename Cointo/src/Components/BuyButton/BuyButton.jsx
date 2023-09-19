@@ -1,40 +1,53 @@
 import React, { useState, useEffect } from 'react'
 
 
-
-
 export default function BuyButton({ input, setInput, setPortfolio, portfolio, BASE_URL, TOKEN }) {
     const [coin, setCoin] = useState("");
     const [purchaseAmount, setPurchaseAmount] = useState("");
     const [numberOfCoins, setNumberOfCoins] = useState("");
+    
 
-    // function for handlebuy
+    // state for coins suggestions
+    const [availableCoins, setAvailableCoins] = useState([]);
+
+    // function for handlebuy for purchase
     const handleBuyButtonClick = async () => {
-    const newPurchase = {
+
+      // const lowercaseCoinName = coin.toLowerCase();
+
+      // check input = available coins
+      if (!availableCoins.includes(coin)) {
+         alert('Invalid coin name. Please choose a coin from the list.');
+         return;
+      }
+
+      const newPurchase = {
       Name: coin,
       // make sure return as number
       'Purchase Amount': parseFloat(purchaseAmount),
       'Number of Coins': parseFloat(numberOfCoins),
-    };
+      };
+
+    
 
      // post request to add newpurchase to airtable
-  try {
-    const response = await fetch(BASE_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${TOKEN}`,
+      try {
+      const response = await fetch(BASE_URL, {
+        method: 'POST',
+         headers: {
+          'Content-Type': 'application/json',
+           Authorization: `Bearer ${TOKEN}`,
       },
       body: JSON.stringify({
         records: [
           {
             fields: newPurchase,
-          },
-        ],
-      }),
-    });
+           },
+         ],
+        }),
+      });
 
-    if (response.ok) {
+      if (response.ok) {
         // Data added successfully
         console.log('Data added to Airtable:', newPurchase);
       } else {
@@ -44,9 +57,9 @@ export default function BuyButton({ input, setInput, setPortfolio, portfolio, BA
         console.error('Error details:', errorData);
       }
       
-  } catch (error) {
+    } catch (error) {
     console.error('Error:', error);
-  }
+     }
 
     // update portfolio to watchlist
     updatePortfolio(newPurchase);
@@ -63,16 +76,22 @@ export default function BuyButton({ input, setInput, setPortfolio, portfolio, BA
 };
 
     // to add search suggestions when adding coin
-    // useEffect(() => {
-    //     const fetchSearch = async () => {
-    //       const response = await fetch(`https://api.coingecko.com/api/v3/search?query=${input}`);
-    //       const data = await response.json();
+    useEffect(() => {
+        const fetchCoinSearch = async () => {
+          const response = await fetch(`https://api.coingecko.com/api/v3/search?query=${input}`);
+          const data = await response.json();
 
-    //       console.log(data.coins)
+          console.log(data.coins)
+     
+          const coinNames = data.coins.map((coin) => coin.name);
+          setAvailableCoins(coinNames);
 
-    //     }
-    //     fetchSearch();
-    //   }, [input]);
+      }
+        fetchCoinSearch();
+      }, [input]);
+
+
+      
 
     return (
       <div className="bg-gray-100 p-4 rounded-lg shadow-md w-1/3">
@@ -82,7 +101,16 @@ export default function BuyButton({ input, setInput, setPortfolio, portfolio, BA
           value={coin}
           onChange={(event) => setCoin(event.target.value)}
           className="w-full p-2 mb-2 rounded border border-gray-300 focus:outline-none focus:border-blue-500"
+          list="availableCoins"
         />
+      
+        {/* suggestions for coinslist */}
+        <datalist id="availableCoins">
+        {availableCoins.map((coinName, index) => (
+          <option key={index}  value={coinName} />
+        ))}
+      </datalist>
+
         <input
           type="text"
           placeholder="Purchase Amount"

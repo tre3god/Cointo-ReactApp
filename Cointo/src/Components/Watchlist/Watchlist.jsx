@@ -28,9 +28,8 @@ export default function Watchlist() {
             ...data.fields,
             id: data.id,
           }));
-          console.log(portfolioData)
           setPortfolio(portfolioData);
-        
+         
         };
         fetchAirTable();
     }, []);
@@ -38,7 +37,7 @@ export default function Watchlist() {
    
       //pulling coindata
     //   useEffect(() => {
-    //     const fetchSearch = async () => {
+    //     const fetchAirTableSearch = async () => {
     //         try {
     //             const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}?localization=true`);
     //             if (!response.ok) {
@@ -54,7 +53,7 @@ export default function Watchlist() {
     //         console.error('Error fetching coin data:', error);
     //       }
     //     }
-    //     fetchSearch();
+    //     fetchAirTableSearch();
     //   }, [id]);
 
     // console.log(portfolio)
@@ -87,8 +86,8 @@ export default function Watchlist() {
                 <td className="p-2 text-center">
                   ${(item["Purchase Amount"] / item["Number of Coins"]).toFixed(2)}
                 </td>
-                {/* <td className="p-2 text-center">Current Price</td>
-                <td className="p-2 text-center">PNL %</td> */}
+                <td className="p-2 text-center">Current Price</td>
+                <td className="p-2 text-center">PNL %</td>
               </tr>
             ))}
           </tbody>

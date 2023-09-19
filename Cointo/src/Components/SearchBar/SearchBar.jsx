@@ -50,6 +50,7 @@ export default function SearchBar() {
 
     <input type='text' 
     placeholder='Search...'
+    className="w-full p-2 mb-2 rounded border border-gray-300 focus:outline-none focus:border-blue-500"
     onChange={(event) => updateQuery(event)}/>
 
     <div>
@@ -57,7 +58,7 @@ export default function SearchBar() {
         <div key={coin.id}>
           <Link to={`/trending/${coin.id}`}>
           {coin.name}
-          {coin.symbol}
+          
           </Link>
           </div>
       ))}
