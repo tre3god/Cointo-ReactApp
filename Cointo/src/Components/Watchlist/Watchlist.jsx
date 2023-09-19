@@ -59,37 +59,55 @@ export default function Watchlist() {
 
     // console.log(portfolio)
 
-  return (
-    <>
-    <div>Existing Portfolio</div>
-    <table border="1">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Purchase Amount</th>
-            <th>Number of Coins</th>
-            <th>Average Entry Price</th>
-            <th>Current Price</th>
-            <th> PNL % </th>
-
-          </tr>
-        </thead>
-        <tbody>
-          {portfolio.map((item) => (
-            <tr key={item.id}>
-              <td>{item.Name}</td>
-              <td>{item['Purchase Amount']}</td>
-              <td>{item['Number of Coins']}</td>
-              <td>{item['Purchase Amount']/item['Number of Coins']}</td>
+    return (
+      <div className="bg-blue-300 min-h-screen flex flex-col items-center justify-start"> {/* Updated background color */}
+        <div className="text-3xl font-bold my-4">Existing Portfolio</div>
+        <table className="w-full table-fixed border-collapse border border-gray-300">
+          <thead>
+            <tr className="bg-slate-700 text-white">
+              <th className="p-2">#</th>
+              <th className="p-2">Name</th>
+              <th className="p-2">Purchase Amount</th>
+              <th className="p-2">Number of Coins</th>
+              <th className="p-2">Average Entry Price</th>
+              <th className="p-2">Current Price</th>
+              <th className="p-2">PNL %</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-   
-      <BuyButton input={input} setInput={setInput} setPortfolio={setPortfolio} portfolio={portfolio} BASE_URL={BASE_URL} TOKEN={TOKEN} />
-   
-   
-    </>
-  )
-}
-
+          </thead>
+          <tbody>
+            {portfolio.map((item, index) => (
+              <tr
+                key={item.id}
+                className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}
+              >
+                <td className="p-2 text-center">{index + 1}</td>
+                <td className="p-2 text-center">{item.Name}</td>
+                <td className="p-2 text-center">${item["Purchase Amount"]}</td>
+                <td className="p-2 text-center">{item["Number of Coins"]}</td>
+                <td className="p-2 text-center">
+                  ${(item["Purchase Amount"] / item["Number of Coins"]).toFixed(2)}
+                </td>
+                {/* <td className="p-2 text-center">Current Price</td>
+                <td className="p-2 text-center">PNL %</td> */}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <br></br>
+        <BuyButton
+          input={input}
+          setInput={setInput}
+          setPortfolio={setPortfolio}
+          portfolio={portfolio}
+          BASE_URL={BASE_URL}
+          TOKEN={TOKEN}
+        />
+      </div>
+    );
+  }
+  
+  
+  
+  
+  
+  

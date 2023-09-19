@@ -74,29 +74,35 @@ export default function BuyButton({ input, setInput, setPortfolio, portfolio, BA
     //     fetchSearch();
     //   }, [input]);
 
-  return (
-    <>
-      <div>
+    return (
+      <div className="bg-gray-100 p-4 rounded-lg shadow-md w-1/3">
         <input
           type="text"
-          placeholder="Coin"
+          placeholder="Coin Name"
           value={coin}
           onChange={(event) => setCoin(event.target.value)}
+          className="w-full p-2 mb-2 rounded border border-gray-300 focus:outline-none focus:border-blue-500"
         />
         <input
           type="text"
           placeholder="Purchase Amount"
           value={purchaseAmount}
           onChange={(event) => setPurchaseAmount(event.target.value)}
+          className="w-full p-2 mb-2 rounded border border-gray-300 focus:outline-none focus:border-blue-500"
         />
         <input
           type="text"
           placeholder="Number of Coins"
           value={numberOfCoins}
           onChange={(event) => setNumberOfCoins(event.target.value)}
+          className="w-full p-2 mb-2 rounded border border-gray-300 focus:outline-none focus:border-blue-500"
         />
-        <button onClick={handleBuyButtonClick}>Buy</button>
+        <button
+          onClick={handleBuyButtonClick}
+          className="w-full bg-blue-500 text-white font-semibold p-2 rounded hover:bg-blue-600"
+        >
+          Buy
+        </button>
       </div>
-      </>
-  )
-}
+    );
+  }

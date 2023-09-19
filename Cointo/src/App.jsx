@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import './App.css'
 import Home from './Pages/Home/Home';
 import CoinPage from './Pages/Coinpage/CoinPage';
 import Watchlist from "./Components/Watchlist/Watchlist";
@@ -12,7 +11,7 @@ export default function App() {
 
   return (
       <>
-      <h1>Cointo</h1>
+      <h1 className="text-xl font-bold text-red-500">Cointo</h1>
       
       <Routes>
         <Route path="/home" element={<Home />}></Route>
