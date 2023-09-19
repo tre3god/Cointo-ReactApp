@@ -6,12 +6,11 @@ export default function BuyButton({ input, setInput, setPortfolio, portfolio, BA
     const [purchaseAmount, setPurchaseAmount] = useState("");
     const [numberOfCoins, setNumberOfCoins] = useState("");
     
-
     // state for coins suggestions
     const [availableCoins, setAvailableCoins] = useState([]);
 
     // function for handlebuy for purchase
-    const handleBuyButtonClick = async () => {
+  const handleBuyButtonClick = async () => {
 
       // const lowercaseCoinName = coin.toLowerCase();
 
@@ -89,6 +88,8 @@ export default function BuyButton({ input, setInput, setPortfolio, portfolio, BA
       }
         fetchCoinSearch();
       }, [input]);
+
+
 
 
       

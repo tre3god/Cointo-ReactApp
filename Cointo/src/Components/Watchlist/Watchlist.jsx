@@ -22,7 +22,7 @@ export default function Watchlist() {
             },
           });
           const jsonData = await response.json();
-          console.log(jsonData)
+          // console.log(jsonData)
 
           const portfolioData = jsonData.records.map((data) => ({
             ...data.fields,
@@ -34,29 +34,44 @@ export default function Watchlist() {
         fetchAirTable();
     }, []);
 
+          // Function to fetch the current price of a coin by its name
+  const fetchCurrentPrice = async (coinName) => {
+    try {
+      const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coinName}&vs_currencies=sgd`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      
+      const data = await response.json();
+      console.log(data)
+      // Update the portfolio with the current price for the specific coin
+      // setPortfolio((prevPortfolio) => {
+      //   return prevPortfolio.map((item) => {
+      //     if (item.Name === coinName) {
+      //       return {
+      //         ...item,
+      //         "Current Price": data[coinName]?.usd || 0, // Set to 0 if the price is not available
+      //       };
+      //     }
+      //     return item;
+      //   });
+      // });
+      // Handle the data here, e.g., update the portfolio with the current price
+      // You can add your logic here to update the portfolio with the current price
+
+    } catch (error) {
+      console.error('Error fetching coin data:', error);
+    }
+  };
+
+  // Fetch current price for each coin in the portfolio when the component mounts
+  useEffect(() => {
+    portfolio.forEach((item) => {
+      fetchCurrentPrice(item.Name);
+    });
+  }, [portfolio]);
    
-      //pulling coindata
-    //   useEffect(() => {
-    //     const fetchAirTableSearch = async () => {
-    //         try {
-    //             const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}?localization=true`);
-    //             if (!response.ok) {
-    //               throw new Error('Network response was not ok');
-    //             }
-
-    //       const data = await response.json();
-    //       setCoinDetails(data)
-    //       console.log(data)
-
-
-    //     } catch (error) {
-    //         console.error('Error fetching coin data:', error);
-    //       }
-    //     }
-    //     fetchAirTableSearch();
-    //   }, [id]);
-
-    // console.log(portfolio)
+console.log(portfolio)
 
     return (
       <div className="bg-blue-300 min-h-screen flex flex-col items-center justify-start"> {/* Updated background color */}
@@ -86,7 +101,7 @@ export default function Watchlist() {
                 <td className="p-2 text-center">
                   ${(item["Purchase Amount"] / item["Number of Coins"]).toFixed(2)}
                 </td>
-                <td className="p-2 text-center">Current Price</td>
+                <td className="p-2 text-center">${item["Current Price"] || 0}</td>
                 <td className="p-2 text-center">PNL %</td>
               </tr>
             ))}
