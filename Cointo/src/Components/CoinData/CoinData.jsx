@@ -27,18 +27,18 @@ export default function CoinData() {
       }, [id]);
 
 
-  return (
-    <>
-    <div>CoinData</div>
-    <div>
-    <h2> Name: {coinDetails.name}</h2>
-    <p>Current Price {coinDetails.market_data?.current_price?.sgd} SGD</p> 
-    <p>24Hrs change  {coinDetails.market_data?.price_change_percentage_24h_in_currency?.sgd}%</p>
-    <p>{coinDetails.image?.large}  </p>
-    <div>{coinDetails.description?.en}</div>
-
-    </div>
-    </>
-
-  )
-}
+      return (
+        <div className="bg-white w-full max-w-screen-lg p-4 rounded-lg text-center">
+          <h2 className="text-2xl font-bold mb-4">Coin Data</h2>
+          <div>
+            <h2 className="text-xl font-semibold">Name: {coinDetails.name}</h2>
+            <p className="text-lg">Current Price: {coinDetails.market_data?.current_price?.sgd} SGD</p>
+            <p className="text-lg">24Hrs Change: {coinDetails.market_data?.price_change_percentage_24h_in_currency?.sgd}%</p>
+            <div className="flex flex-col items-center justify-center">
+              <img src={coinDetails.image?.large} alt={coinDetails.name} className="w-16 h-16 mt-4" />
+            </div>
+            {/* <div className="mt-4 text-base">{coinDetails.description?.en}</div> */}
+          </div>
+        </div>
+      );
+    }
