@@ -90,10 +90,6 @@ export default function BuyButton({ input, setInput, setPortfolio, portfolio, BA
       }, [input]);
 
 
-
-
-      
-
     return (
       <div className="bg-gray-100 p-4 rounded-lg shadow-md w-1/3">
         <input
