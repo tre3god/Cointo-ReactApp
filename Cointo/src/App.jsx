@@ -3,7 +3,7 @@ import Home from './Pages/Home/Home';
 import CoinPage from './Pages/Coinpage/CoinPage';
 import Watchlist from "./Components/Watchlist/Watchlist";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 
 export default function App() {
   const [portfolio, setPortfolio] = useState([])
@@ -11,7 +11,9 @@ export default function App() {
 
   return (
       <>
-      <h1 className="text-xl font-bold text-red-500">Cointo</h1>
+      <Link to="/home" className="text-center text-6xl font-bold text-slate-100 bg-black p-5 block">
+        Cointo
+      </Link>
       
       <Routes>
         <Route path="/home" element={<Home />}></Route>

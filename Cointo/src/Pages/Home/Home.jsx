@@ -12,11 +12,16 @@ export default function Home() {
 
   return (
     <>
-    <h2 className="text-3xl font-bold underline" >Home</h2>  
     
     <TrendingStore />
     <SearchBar />
-    <button><Link to={`/portfolio`}>Portfolio</Link></button>
-    </>
+    <div className="flex flex-col items-center justify-center ">
+  <button className="bg-black px-6 py-3 rounded-md mt-4">
+    <Link to={`/portfolio`} className="text-slate-100 hover:text-blue-500">
+      Portfolio
+    </Link>
+  </button>
+</div>  
+      </>
 )
 }

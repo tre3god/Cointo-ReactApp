@@ -91,7 +91,7 @@ export default function BuyButton({ input, setInput, setPortfolio, portfolio, BA
 
 
     return (
-      <div className="bg-gray-100 p-4 rounded-lg shadow-md w-1/3">
+      <div className="bg-gray-100 p-3 rounded-lg w-1/5">
         <input
           type="text"
           placeholder="Coin Name"
