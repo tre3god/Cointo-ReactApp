@@ -45,24 +45,23 @@ export default function SearchBar() {
   
 
   return (
-    <>
-    <div>SearchBar</div>
-
-    <input type='text' 
-    placeholder='Search...'
-    className="w-full p-2 mb-2 rounded border border-gray-300 focus:outline-none focus:border-blue-500"
-    onChange={(event) => updateQuery(event)}/>
-
-    <div>
-      {searchCoins.map((coin) => (
-        <div key={coin.id}>
-          <Link to={`/trending/${coin.id}`}>
-          {coin.name}
-          
-          </Link>
+    <div className="bg-blue-300 p-4 text-center">
+      <div className="text-2xl font-bold mb-2">SearchBar</div>
+      <input
+        type="text"
+        placeholder="Search..."
+        className="max-w-md p-3 mb-3 rounded border border-gray-400 focus:outline-none focus:border-blue-500"
+        onChange={(event) => updateQuery(event)}
+      />
+      <div>
+        {searchCoins.map((coin) => (
+          <div key={coin.id} className="mb-2">
+            <Link to={`/trending/${coin.id}`} className="text-black-600 hover:underline">
+              {coin.name}
+            </Link>
           </div>
-      ))}
+        ))}
+      </div>
     </div>
-    </>
-  )
+  );
 }
