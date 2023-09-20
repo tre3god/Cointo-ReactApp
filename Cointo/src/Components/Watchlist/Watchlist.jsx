@@ -66,7 +66,7 @@ console.log(portfolio)
                 <td className="p-2 text-center">
                   ${(item["Purchase Amount"] / item["Number of Coins"]).toFixed(2)}
                 </td>
-                <td>
+                <td className="p-2 text-center">
                   <PriceDisplay coinName = {item.Name}/>
                 </td>
               </tr>
