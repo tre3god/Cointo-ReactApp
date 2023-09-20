@@ -12,7 +12,6 @@ const BASE_URL = "https://api.airtable.com/v0/appIy9yfGUFojgmtx/Crypto";
 export default function Watchlist() {
     const [portfolio, setPortfolio] = useState([])
     const [input, setInput] = useState("")
-    const [curPrice, setCurPrice] = useState({})
 
     //pulling airtable data
     useEffect(() => {
@@ -36,80 +35,6 @@ export default function Watchlist() {
         fetchAirTable();
     }, []);
 
-  // // Function to fetch the current price of a coin by its name
-  // const fetchCurrentPrice = async (coinName) => {
-  //   try {
-  //     const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coinName}&vs_currencies=sgd`);
-  //     if (!response.ok) {
-  //       throw new Error('Network response was not ok');
-  //     }
-      
-  //     const data = await response.json();
-  //     // console.log(data)
-
-  //     // change data to my required format
-  //     const name = Object.keys(data)[0];
-  //     const price = data[name].sgd;
-
-  //     const newData = {
-  //       name: name,
-  //       currentPrice: price
-  //     }
-
-  //     setCurPrice((prevCurPrice) => ({
-  //       ...prevCurPrice,
-  //       [newData.name]: newData.currentPrice,
-  //     }));
-      
-  //     updateCurrentPriceInAirtable(newData.name, newData.price);
-
-
-  //   } catch (error) {
-  //     console.error('Error fetching coin data:', error);
-  //   }
-  // };
-
-  // const updateCurrentPriceInAirtable = async (coinName, price) => {
-  //   try {
-  //     const recordToUpdate = portfolio.find((item) => item.Name === coinName);
-  //     if (!recordToUpdate) {
-  //       console.error(`Record not found for ${coinName}`);
-  //       return;
-  //     }
-
-  //     const updatedRecord = {
-  //       fields: {
-  //         "Current Price": price,
-  //       },
-  //     };
-
-  //     const response = await fetch(`${BASE_URL}/${recordToUpdate.id}`, {
-  //       method: 'PATCH',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: `Bearer ${TOKEN}`,
-  //       },
-  //       body: JSON.stringify(updatedRecord),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error('Network response was not ok');
-  //     }
-
-  //     // Log the successful update
-  //     console.log(`Updated "Current Price" for ${coinName} to ${price}`);
-  //   } catch (error) {
-  //     console.error('Error updating Airtable record:', error);
-  //   }
-  // };
-
-
-  // // Fetch current price for each coin in the portfolio when the component mounts
-  // useEffect(() => {
-  //   portfolio.forEach((item) => {
-  //     fetchCurrentPrice(item.Name);
-  //   });
-  // }, [portfolio]);
    
 console.log(portfolio)
 
@@ -142,10 +67,10 @@ console.log(portfolio)
                   ${(item["Purchase Amount"] / item["Number of Coins"]).toFixed(2)}
                 </td>
                 <td>
-        {/* Render CoinData component for each coin */}
-        <PriceDisplay coinName = {item.Name}/>
-      </td>
+                  <PriceDisplay coinName = {item.Name}/>
+                </td>
               </tr>
+             
             ))}
           </tbody>
         </table>

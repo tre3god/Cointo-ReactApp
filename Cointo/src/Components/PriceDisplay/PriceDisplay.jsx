@@ -31,6 +31,7 @@ export default function PriceDisplay({ coinName }) {
         const coinData = await coinResponse.json();
 
         setCoinPrice(coinData);
+        
       } catch (error) {
         console.error('Error fetching coin data:', error);
       }
@@ -38,6 +39,7 @@ export default function PriceDisplay({ coinName }) {
 
     fetchCoinData();
   }, [coinName]);
+
 
   return (
     <>
