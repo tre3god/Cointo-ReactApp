@@ -47,12 +47,10 @@ export default function BuyButton({ input, setInput, setPortfolio, portfolio, BA
       });
 
       if (response.ok) {
-        // Data added successfully
         console.log('Data added to Airtable:', newPurchase);
       } else {
-        // Handle the error here if the request fails
         console.error('Failed to add data to Airtable. Status:', response.status);
-        const errorData = await response.json(); // Get error details from the response
+        const errorData = await response.json(); 
         console.error('Error details:', errorData);
       }
       
