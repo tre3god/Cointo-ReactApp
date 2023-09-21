@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 
+//https://www.youtube.com/watch?v=sWVgMcz8Q44
+
 export default function SearchBar() {
   const [query, setQuery] = useState("");
   const [searchCoins, setSearchCoins] = useState([])

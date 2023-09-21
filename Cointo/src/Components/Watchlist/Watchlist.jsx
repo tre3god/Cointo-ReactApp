@@ -3,12 +3,14 @@ import { useEffect, useState } from 'react';
 import CoinData from '../CoinData/CoinData';
 import BuyButton from '../BuyButton/BuyButton';
 import PriceDisplay from '../PriceDisplay/PriceDisplay';
+import WatchlistSummary from './WatchlistSummary';
+import Pnl from '../PNL/Pnl';
 
 const TOKEN =
 "patEMyFBP6XE9InEM.2410ce65903fe770f8d957aaeabe59c1e0a49983a6243c1d3de60551b15dddeb";
 const BASE_URL = "https://api.airtable.com/v0/appIy9yfGUFojgmtx/Crypto";
 
-
+// fetch airtable data
 export default function Watchlist() {
     const [portfolio, setPortfolio] = useState([])
     const [input, setInput] = useState("")
@@ -39,7 +41,7 @@ export default function Watchlist() {
 console.log(portfolio)
 
     return (
-      <div className="bg-blue-300 min-h-screen flex flex-col items-center justify-start"> {/* Updated background color */}
+      <div className="bg-blue-300 min-h-screen flex flex-col items-center justify-start"> 
         <div className="text-3xl font-bold my-4">Existing Portfolio</div>
         <table className="w-full table-fixed border-collapse border border-gray-300">
           <thead>
@@ -69,15 +71,25 @@ console.log(portfolio)
                 <td className="p-2 text-center">
                   <PriceDisplay coinName = {item.Name}/>
                 </td>
+                <td className="p-2 text-center">
+                  <Pnl coinName = {item.Name} item = {item} BASE_URL={BASE_URL} TOKEN={TOKEN} portfolio={portfolio} itempurchase={item["Purchase Amount"]} itemnumber={item["Number of Coins"]}/>
+                </td>
               </tr>
-             
             ))}
           </tbody>
         </table>
+        
         <br></br>
         <BuyButton
           input={input}
           setInput={setInput}
+          setPortfolio={setPortfolio}
+          portfolio={portfolio}
+          BASE_URL={BASE_URL}
+          TOKEN={TOKEN}
+        />
+        <br></br>
+        <WatchlistSummary 
           setPortfolio={setPortfolio}
           portfolio={portfolio}
           BASE_URL={BASE_URL}
