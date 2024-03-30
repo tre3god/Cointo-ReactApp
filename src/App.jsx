@@ -11,7 +11,7 @@ export default function App() {
 
   return (
       <>
-      <Link to="/" className="text-center text-6xl font-bold text-slate-100 bg-black p-5 block">
+      <Link to="/Cointo-ReactApp/" className="text-center text-6xl font-bold text-slate-100 bg-black p-5 block">
         Cointo
       </Link>
       
@@ -24,6 +24,11 @@ export default function App() {
   )
 
 }
+
+
+
+
+
 
 //https://www.youtube.com/watch?v=0sY4fUi5dMM
 
